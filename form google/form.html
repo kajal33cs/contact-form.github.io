@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form sheet</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            height:100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            width: 500PX;
+            padding: 15PX;
+            border: px solid skyblue;
+            border-radius: 5px;
+            background-color: rgb(199, 246, 242);
+        }
+        input{
+            margin: 5px 0px;
+            height: 35px;
+            padding: 7px;
+        }
+       
+    </style>
+</head>
+<body>
+    <center>
+    <div class="container">
+    <div class="text">
+        <h2> contact us</h2>
+        
+        <form method="post" action="" name="contactform" id="contactform">
+            <label>Name</label>
+            <input type="text" class="form-contorl" placeholder="Full Name" name="name" id="name">
+            <br>
+            <br>
+            <label>Mail-id</label>
+             <input type="email" class="form-contorl" placeholder="Email" name="email" id="name">
+             <br>
+             <br>
+             <label>Mobile</label>
+              <input type="number" class="form-contorl" placeholder="Phone" name="number" id="phone">
+              <br>
+              <br>
+              <label>comment</label>
+               <textarea id ="comments" class="form-contorl" placeholder="Message" name="message"></textarea>
+               <br>
+                <br>
+                <input type="submit" value="send Message" class="button btn-primary" id="submit"/>
+                </center>
+        </form>
+    </div>
+    <script>
+        const scriptURL ='https://script.google.com/macros/s/AKfycbwSc8SioY92mSAcALOVLjccZiBJSOQa734VSi6aI4CUY6F-s5B0nEokQWFEdx0HMmU3/exec'
+        const form = document.forms['contactform']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => alert("Thank you! your form is submitted successfully." ))
+            .then(() => {  window.location.reload(); })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+</body>
+</html>
